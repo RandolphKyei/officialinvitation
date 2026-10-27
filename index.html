@@ -213,127 +213,138 @@
 <main>
   <div class="progress" id="progress"></div>
 
-  <!-- 0. Intro -->
-  <section class="step active" data-step="0">
-    <span class="big-emoji">💌</span>
-    <p class="eyebrow">Hey Alicia,</p>
-    <h1>I made you something.</h1>
-    <p>Someone (me 👀) has been trying to lock in a date with you for a while now. Instead of another text, I figured I'd build you a whole website. Answer honestly… mostly.</p>
-    <div class="row center"><button class="btn" data-next>Open it ✨</button></div>
+  <!-- 0. Language -->
+  <section class="step active" data-step="lang">
+    <span class="big-emoji">🌍</span>
+    <p class="eyebrow">Hey Alicia 👋</p>
+    <h1>English or Nederlands?</h1>
+    <p>Pick your language · Kies je taal</p>
+    <div class="row center">
+      <button class="btn" data-lang="en">🇬🇧 English</button>
+      <button class="btn" data-lang="nl">🇳🇱 Nederlands</button>
+    </div>
   </section>
 
-  <!-- 1. Yes / No -->
-  <section class="step" data-step="1">
-    <p class="eyebrow">Question one</p>
-    <h2>Would you like to see me?</h2>
-    <p>Take your time. (There's only one right answer.)</p>
+  <!-- 1. Intro -->
+  <section class="step" data-step="intro">
+    <span class="big-emoji">💌</span>
+    <p class="eyebrow" data-i18n="intro.eyebrow"></p>
+    <h1 data-i18n="intro.title"></h1>
+    <p data-i18n="intro.text"></p>
+    <div class="row center"><button class="btn" data-next data-i18n="intro.btn"></button></div>
+  </section>
+
+  <!-- 2. Yes / No -->
+  <section class="step" data-step="ask">
+    <p class="eyebrow" data-i18n="ask.eyebrow"></p>
+    <h2 data-i18n="ask.title"></h2>
+    <p data-i18n="ask.text"></p>
     <div class="arena" id="arena">
-      <button class="btn" id="yesBtn">Yes 💖</button>
-      <button class="btn ghost" id="noBtn">No</button>
+      <button class="btn" id="yesBtn" data-i18n="ask.yes"></button>
+      <button class="btn ghost" id="noBtn" data-i18n="ask.no"></button>
     </div>
     <div class="no-msg" id="noMsg"></div>
   </section>
 
-  <!-- 2. Reasons -->
-  <section class="step" data-step="2">
-    <p class="eyebrow">I knew it 😌</p>
-    <h2>So… why did it take us so long to agree on a date?</h2>
-    <p>Tick everything that applies. This is a safe space.</p>
+  <!-- 3. Reasons (values stay English for the email) -->
+  <section class="step" data-step="reasons">
+    <p class="eyebrow" data-i18n="why.eyebrow"></p>
+    <h2 data-i18n="why.title"></h2>
+    <p data-i18n="why.text"></p>
     <div class="options" id="reasons">
-      <label class="opt"><input type="checkbox" value="I was busy (being amazing)"> I was busy (being amazing) 💅</label>
-      <label class="opt"><input type="checkbox" value="I wanted to see how hard you'd try"> I wanted to see how hard you'd try 😏</label>
-      <label class="opt"><input type="checkbox" value="Our calendars were enemies"> Our calendars were enemies 📅⚔️</label>
-      <label class="opt"><input type="checkbox" value="I was nervous, honestly"> I was nervous, honestly 🙈</label>
-      <label class="opt"><input type="checkbox" value="Waiting for a website like this"> I was waiting for a website like this 💻</label>
-      <label class="opt"><input type="checkbox" value="It's 100% your fault"> It's 100% your fault 🫵</label>
+      <label class="opt"><input type="checkbox" value="I was busy (being amazing)"> <span data-i18n="why.r1"></span></label>
+      <label class="opt"><input type="checkbox" value="I wanted to see how hard you'd try"> <span data-i18n="why.r2"></span></label>
+      <label class="opt"><input type="checkbox" value="Our calendars were enemies"> <span data-i18n="why.r3"></span></label>
+      <label class="opt"><input type="checkbox" value="I was nervous, honestly"> <span data-i18n="why.r4"></span></label>
+      <label class="opt"><input type="checkbox" value="It's 100% your fault"> <span data-i18n="why.r6"></span></label>
     </div>
-    <label class="small" for="reasonOther">Anything else you want to confess?</label>
-    <textarea id="reasonOther" rows="2" placeholder="The real reason is…"></textarea>
+    <label class="small" for="reasonOther" data-i18n="why.other"></label>
+    <textarea id="reasonOther" rows="2" data-i18n-ph="why.ph"></textarea>
     <div class="row end">
-      <button class="btn ghost" data-prev>Back</button>
-      <button class="btn" data-next id="reasonsNext" disabled>Next →</button>
+      <button class="btn ghost" data-prev data-i18n="back"></button>
+      <button class="btn" data-next id="reasonsNext" disabled data-i18n="next"></button>
     </div>
   </section>
 
-  <!-- 3. Location -->
-  <section class="step" data-step="3">
-    <p class="eyebrow">Door-to-door service 🚗</p>
-    <h2>Where should I pick you up?</h2>
-    <p>No meeting halfway — I'm coming to get you. Drop your location so I know where to show up.</p>
+  <!-- 4. Location -->
+  <section class="step" data-step="location">
+    <p class="eyebrow" data-i18n="loc.eyebrow"></p>
+    <h2 data-i18n="loc.title"></h2>
+    <p data-i18n="loc.text"></p>
     <div class="loc-card">
       <div style="font-size:40px">📍</div>
-      <button class="btn" id="locBtn">Share my location</button>
+      <button class="btn" id="locBtn" data-i18n="loc.btn"></button>
       <div class="loc-status" id="locStatus"></div>
     </div>
-    <p class="divider">— or type it in —</p>
-    <label class="small" for="address">Pickup address</label>
-    <input type="text" id="address" placeholder="Street, number, city">
+    <p class="divider" data-i18n="loc.or"></p>
+    <label class="small" for="address" data-i18n="loc.label"></label>
+    <input type="text" id="address" data-i18n-ph="loc.ph">
     <div class="row end">
-      <button class="btn ghost" data-prev>Back</button>
-      <button class="btn" data-next id="locNext" disabled>Next →</button>
+      <button class="btn ghost" data-prev data-i18n="back"></button>
+      <button class="btn" data-next id="locNext" disabled data-i18n="next"></button>
     </div>
   </section>
 
-  <!-- 4. Calendar -->
-  <section class="step" data-step="4">
-    <p class="eyebrow">Clear your schedule 🗓️</p>
-    <h2>Pick the day & time</h2>
-    <p>Hearts mark the weekends, just saying.</p>
+  <!-- 5. Calendar -->
+  <section class="step" data-step="calendar">
+    <p class="eyebrow" data-i18n="cal.eyebrow"></p>
+    <h2 data-i18n="cal.title"></h2>
+    <p data-i18n="cal.text"></p>
     <div class="cal">
       <div class="cal-head">
-        <button class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
+        <button class="cal-nav" id="calPrev" aria-label="‹">‹</button>
         <strong id="calTitle"></strong>
-        <button class="cal-nav" id="calNext" aria-label="Next month">›</button>
+        <button class="cal-nav" id="calNext" aria-label="›">›</button>
       </div>
       <div class="cal-grid" id="calGrid"></div>
     </div>
-    <label class="small">What time?</label>
+    <label class="small" data-i18n="cal.time"></label>
     <div class="times" id="times"></div>
     <div class="row end">
-      <button class="btn ghost" data-prev>Back</button>
-      <button class="btn" data-next id="calNextStep" disabled>Next →</button>
+      <button class="btn ghost" data-prev data-i18n="back"></button>
+      <button class="btn" data-next id="calNextStep" disabled data-i18n="next"></button>
     </div>
   </section>
 
-  <!-- 5. Scratch cards -->
-  <section class="step" data-step="5">
-    <p class="eyebrow">Let fate decide 🎰</p>
-    <h2>Where are we going?</h2>
-    <p>Three cities are hiding under these cards: <b>Rotterdam</b>, <b>Amsterdam</b> and <b>Brussels</b>. Pick <b>one</b> card and scratch it. No take-backs.</p>
+  <!-- 6. Scratch cards -->
+  <section class="step" data-step="cards">
+    <p class="eyebrow" data-i18n="cards.eyebrow"></p>
+    <h2 data-i18n="cards.title"></h2>
+    <p data-i18n="cards.text"></p>
     <div class="cards" id="cards"></div>
-    <div class="hint" id="scratchHint">Choose wisely… ✨</div>
+    <div class="hint" id="scratchHint" data-i18n="cards.hint"></div>
     <div class="reveal-box" id="revealBox">
       <h3 id="revealTitle"></h3>
       <p id="revealText"></p>
     </div>
     <div class="row end">
-      <button class="btn ghost" data-prev>Back</button>
-      <button class="btn" data-next id="cardsNext" disabled>See our date →</button>
+      <button class="btn ghost" data-prev data-i18n="back"></button>
+      <button class="btn" data-next id="cardsNext" disabled data-i18n="cards.next"></button>
     </div>
   </section>
 
-  <!-- 6. Ticket -->
-  <section class="step" data-step="6">
-    <p class="eyebrow">It's official 🥂</p>
-    <h2>Your ticket</h2>
-    <p>That's everything. Leave the rest to me.</p>
+  <!-- 7. Ticket -->
+  <section class="step" data-step="ticket">
+    <p class="eyebrow" data-i18n="tk.eyebrow"></p>
+    <h2 data-i18n="tk.title"></h2>
+    <p data-i18n="tk.text"></p>
     <div class="ticket">
       <div class="ticket-top">
-        <small>Admit two · First date</small>
+        <small data-i18n="tk.admit"></small>
         <h3 id="tCity">—</h3>
       </div>
       <div class="ticket-body">
-        <div><small>Date</small><span id="tDate">—</span></div>
-        <div><small>Time</small><span id="tTime">—</span></div>
-        <div class="full"><small>Pickup</small><span id="tPickup">—</span></div>
-        <div class="full"><small>Why it took so long</small><span id="tReasons">—</span></div>
+        <div><small data-i18n="tk.date"></small><span id="tDate">—</span></div>
+        <div><small data-i18n="tk.time"></small><span id="tTime">—</span></div>
+        <div class="full"><small data-i18n="tk.pickup"></small><span id="tPickup">—</span></div>
+        <div class="full"><small data-i18n="tk.reasons"></small><span id="tReasons">—</span></div>
       </div>
       <div class="perf"></div>
-      <div class="ticket-foot">Alicia × You-know-who 😉</div>
+      <div class="ticket-foot" data-i18n="tk.foot"></div>
     </div>
     <div class="row center" style="margin-top:22px; flex-direction:column; gap:10px">
       <div class="hint" id="sendStatus"></div>
-      <button class="btn" id="retryBtn" hidden>Try sending again</button>
+      <button class="btn" id="retryBtn" hidden data-i18n="send.retry"></button>
     </div>
   </section>
 </main>
@@ -346,10 +357,174 @@ const NOTIFY_EMAIL = "randykyei1997@gmail.com"; // her answers get emailed here 
 /* ============================================================ */
 
 const CITIES = {
-  ROT: { name: "Rotterdam", emoji: "🌉", blurb: "Skyline views from the Erasmus Bridge, food at the Markthal and a walk along the Maas. Modern, bold — like us." },
-  AMS: { name: "Amsterdam", emoji: "🚲", blurb: "Canal-side drinks, golden-hour walks through the Jordaan and getting a little lost on purpose. Classic romance." },
-  BRU: { name: "Brussels",  emoji: "🧇", blurb: "Grand-Place lit up at night, waffles, chocolate and Belgian fries. A little road trip for a first date — very cinematic." },
+  ROT: { name: "Rotterdam", emoji: "🌉" },
+  AMS: { name: "Amsterdam", emoji: "🚲" },
+  BRU: { name: "Brussels",  emoji: "🧇" },
 };
+
+/* ---------- translations ---------- */
+const I18N = {
+  en: {
+    locale: "en-GB",
+    "intro.eyebrow": "Hey Alicia,",
+    "intro.title": "I made you something.",
+    "intro.text": "Someone (me 👀) has been trying to lock in a date with you for a while now. Instead of another text, I figured I'd build you a whole website. Answer honestly… mostly.",
+    "intro.btn": "Open it ✨",
+    "ask.eyebrow": "Question one",
+    "ask.title": "Would you like to see me?",
+    "ask.text": "Take your time. (There's only one right answer.)",
+    "ask.yes": "Yes 💖",
+    "ask.no": "No",
+    noLines: ["Hmm, that button seems broken 🤔", "Are you sure? Think again.", "Wrong answer, try the other one 😇",
+      "The No button has left the chat.", "Nice try 😂", "I'll keep moving it forever.", "Just press Yes 🥺"],
+    "why.eyebrow": "I knew it 😌",
+    "why.title": "So… why did it take us so long to agree on a date?",
+    "why.text": "Tick everything that applies. This is a safe space.",
+    "why.r1": "I was busy (being amazing) 💅",
+    "why.r2": "I wanted to see how hard you'd try 😏",
+    "why.r3": "Our calendars were enemies 📅⚔️",
+    "why.r4": "I was nervous, honestly 🙈",
+    "why.r6": "It's 100% your fault 🫵",
+    "why.other": "Anything else you want to confess?",
+    "why.ph": "The real reason is…",
+    back: "Back",
+    next: "Next →",
+    "loc.eyebrow": "Door-to-door service 🚗",
+    "loc.title": "Where should I pick you up?",
+    "loc.text": "No meeting halfway — I'm coming to get you. Drop your location so I know where to show up.",
+    "loc.btn": "Share my location",
+    "loc.update": "Update location",
+    "loc.or": "— or type it in —",
+    "loc.label": "Pickup address",
+    "loc.ph": "Street, number, city",
+    "loc.unsupported": "Your browser can't share location — type the address below instead.",
+    "loc.finding": "Finding you… 🛰️",
+    "loc.got": "Got it! ✅",
+    "loc.map": "Check on map",
+    "loc.fail": "Couldn't get your location — no worries, type the address below.",
+    "cal.eyebrow": "Clear your schedule 🗓️",
+    "cal.title": "Pick the day & time",
+    "cal.text": "Hearts mark the weekends, just saying.",
+    "cal.time": "What time?",
+    dow: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    "cards.eyebrow": "Let fate decide 🎰",
+    "cards.title": "Where are we going?",
+    "cards.text": "Three cities are hiding under these cards: <b>Rotterdam</b>, <b>Amsterdam</b> and <b>Brussels</b>. Pick <b>one</b> card and scratch it. No take-backs.",
+    "cards.hint": "Choose wisely… ✨",
+    "cards.keep": "Keep scratching… 👀",
+    "cards.taken": "No take-backs 😜 you already picked!",
+    "cards.scratch": "scratch me",
+    "cards.its": c => `It's ${c}! 🎉`,
+    "cards.itIs": c => `${c} it is!`,
+    "cards.next": "See our date →",
+    cityNames: { ROT: "Rotterdam", AMS: "Amsterdam", BRU: "Brussels" },
+    blurbs: {
+      ROT: "Skyline views from the Erasmus Bridge, food at the Markthal and a walk along the Maas. Modern, bold — like us.",
+      AMS: "Canal-side drinks, golden-hour walks through the Jordaan and getting a little lost on purpose. Classic romance.",
+      BRU: "Grand-Place lit up at night, waffles, chocolate and Belgian fries. A little road trip for a first date — very cinematic.",
+    },
+    "tk.eyebrow": "It's official 🥂",
+    "tk.title": "Your ticket",
+    "tk.text": "That's everything. Leave the rest to me.",
+    "tk.admit": "Admit two · First date",
+    "tk.date": "Date",
+    "tk.time": "Time",
+    "tk.pickup": "Pickup",
+    "tk.reasons": "Why it took so long",
+    "tk.foot": "Alicia × You-know-who 😉",
+    "tk.mapShared": "📍 Shared via map",
+    "send.sending": "Sending your answers to me… 💌",
+    "send.ok": "Got it! See you soon 😘",
+    "send.fail": "Hmm, that didn't go through 😕",
+    "send.retry": "Try sending again",
+  },
+  nl: {
+    locale: "nl-NL",
+    "intro.eyebrow": "Hoi Alicia,",
+    "intro.title": "Ik heb iets voor je gemaakt.",
+    "intro.text": "Iemand (ik 👀) probeert al een tijdje een date met je te plannen. In plaats van nóg een appje heb ik maar een hele website voor je gebouwd. Antwoord eerlijk… grotendeels.",
+    "intro.btn": "Openen ✨",
+    "ask.eyebrow": "Vraag één",
+    "ask.title": "Zou je me willen zien?",
+    "ask.text": "Neem je tijd. (Er is maar één goed antwoord.)",
+    "ask.yes": "Ja 💖",
+    "ask.no": "Nee",
+    noLines: ["Hmm, die knop lijkt kapot 🤔", "Weet je het zeker? Denk nog even na.", "Fout antwoord, probeer de andere 😇",
+      "De Nee-knop heeft de chat verlaten.", "Goed geprobeerd 😂", "Ik blijf hem eeuwig verplaatsen.", "Druk nou gewoon op Ja 🥺"],
+    "why.eyebrow": "Ik wist het 😌",
+    "why.title": "Dus… waarom duurde het zo lang voordat we een date hadden geprikt?",
+    "why.text": "Vink alles aan wat klopt. Dit is een veilige plek.",
+    "why.r1": "Ik had het druk (met geweldig zijn) 💅",
+    "why.r2": "Ik wilde zien hoe hard je je best zou doen 😏",
+    "why.r3": "Onze agenda's waren aartsvijanden 📅⚔️",
+    "why.r4": "Ik was eerlijk gezegd zenuwachtig 🙈",
+    "why.r6": "Het is 100% jouw schuld 🫵",
+    "why.other": "Wil je nog iets anders opbiechten?",
+    "why.ph": "De echte reden is…",
+    back: "Terug",
+    next: "Volgende →",
+    "loc.eyebrow": "Deur-tot-deur service 🚗",
+    "loc.title": "Waar mag ik je ophalen?",
+    "loc.text": "Niet halverwege afspreken — ik kom je gewoon halen. Deel je locatie zodat ik weet waar ik moet zijn.",
+    "loc.btn": "Deel mijn locatie",
+    "loc.update": "Locatie bijwerken",
+    "loc.or": "— of typ het in —",
+    "loc.label": "Ophaaladres",
+    "loc.ph": "Straat, huisnummer, plaats",
+    "loc.unsupported": "Je browser kan je locatie niet delen — typ het adres hieronder maar in.",
+    "loc.finding": "Even zoeken… 🛰️",
+    "loc.got": "Gevonden! ✅",
+    "loc.map": "Bekijk op de kaart",
+    "loc.fail": "Kon je locatie niet vinden — geen zorgen, typ het adres hieronder.",
+    "cal.eyebrow": "Maak je agenda vrij 🗓️",
+    "cal.title": "Kies de dag & tijd",
+    "cal.text": "De hartjes zijn de weekenden, ik zeg het maar even.",
+    "cal.time": "Hoe laat?",
+    dow: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"],
+    "cards.eyebrow": "Laat het lot beslissen 🎰",
+    "cards.title": "Waar gaan we heen?",
+    "cards.text": "Onder deze kaarten verstoppen zich drie steden: <b>Rotterdam</b>, <b>Amsterdam</b> en <b>Brussel</b>. Kies <b>één</b> kaart en kras hem open. Niet terugnemen.",
+    "cards.hint": "Kies verstandig… ✨",
+    "cards.keep": "Blijf krassen… 👀",
+    "cards.taken": "Niet terugnemen 😜 je hebt al gekozen!",
+    "cards.scratch": "kras mij",
+    "cards.its": c => `Het is ${c}! 🎉`,
+    "cards.itIs": c => `Het wordt ${c}!`,
+    "cards.next": "Bekijk onze date →",
+    cityNames: { ROT: "Rotterdam", AMS: "Amsterdam", BRU: "Brussel" },
+    blurbs: {
+      ROT: "Uitzicht op de skyline vanaf de Erasmusbrug, eten in de Markthal en een wandeling langs de Maas. Modern en gedurfd — net als wij.",
+      AMS: "Drankjes aan de gracht, wandelen door de Jordaan tijdens golden hour en expres een beetje verdwalen. Klassieke romantiek.",
+      BRU: "De Grote Markt 's avonds verlicht, wafels, chocolade en Belgische frietjes. Een klein roadtripje voor een eerste date — heel filmisch.",
+    },
+    "tk.eyebrow": "Het is officieel 🥂",
+    "tk.title": "Jouw ticket",
+    "tk.text": "Dat was alles. Laat de rest maar aan mij over.",
+    "tk.admit": "Toegang voor twee · Eerste date",
+    "tk.date": "Datum",
+    "tk.time": "Tijd",
+    "tk.pickup": "Ophalen",
+    "tk.reasons": "Waarom het zo lang duurde",
+    "tk.foot": "Alicia × Je-weet-wel-wie 😉",
+    "tk.mapShared": "📍 Gedeeld via de kaart",
+    "send.sending": "Je antwoorden zijn onderweg naar mij… 💌",
+    "send.ok": "Ontvangen! Tot snel 😘",
+    "send.fail": "Hmm, dat is niet gelukt 😕",
+    "send.retry": "Probeer opnieuw te versturen",
+  },
+};
+let lang = "en";
+const t = key => I18N[lang][key];
+const cityName = key => `${CITIES[key].emoji} ${t("cityNames")[key]}`;
+
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  $$("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
+  $$("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+  $$(".scard .prize b").forEach(b => { b.textContent = t("cityNames")[b.dataset.city]; });
+  renderCal();
+}
 
 const state = { step: 0, reasons: [], other: "", coords: null, address: "", date: null, time: null, city: null };
 const $ = (s, el = document) => el.querySelector(s);
@@ -378,9 +553,12 @@ function go(n) {
   steps.forEach((s, i) => s.classList.toggle("active", i === n));
   $$("i", progress).forEach((b, i) => b.classList.toggle("on", i <= n));
   window.scrollTo({ top: 0, behavior: "smooth" });
-  if (n === 5) $$(".scard").forEach(c => c._paint());
-  if (n === 6) fillTicket();
+  const name = steps[n].dataset.step;
+  if (name === "cards") $$(".scard").forEach(c => c._paint());
+  if (name === "ticket") fillTicket();
 }
+const goTo = name => go(steps.findIndex(s => s.dataset.step === name));
+$$("[data-lang]").forEach(b => b.addEventListener("click", () => { setLang(b.dataset.lang); goTo("intro"); }));
 document.addEventListener("click", e => {
   if (e.target.closest("[data-next]") && !e.target.disabled) go(state.step + 1);
   if (e.target.closest("[data-prev]")) go(state.step - 1);
@@ -393,10 +571,6 @@ function toast(msg) {
 }
 
 /* ---------- step 1: the runaway No ---------- */
-const noLines = [
-  "Hmm, that button seems broken 🤔", "Are you sure? Think again.", "Wrong answer, try the other one 😇",
-  "The No button has left the chat.", "Nice try 😂", "I'll keep moving it forever.", "Just press Yes 🥺",
-];
 let noCount = 0;
 const noBtn = $("#noBtn"), yesBtn = $("#yesBtn"), arena = $("#arena");
 function dodge(e) {
@@ -405,6 +579,7 @@ function dodge(e) {
   const maxX = a.width - b.width, maxY = a.height - b.height;
   noBtn.style.left = Math.random() * maxX + "px";
   noBtn.style.top = Math.random() * maxY + b.height / 2 + "px";
+  const noLines = t("noLines");
   $("#noMsg").textContent = noLines[noCount % noLines.length];
   noCount++;
   const grow = Math.min(1 + noCount * 0.12, 1.9);
@@ -413,7 +588,7 @@ function dodge(e) {
 noBtn.addEventListener("mouseenter", dodge);
 noBtn.addEventListener("click", dodge);
 noBtn.addEventListener("touchstart", dodge, { passive: false });
-yesBtn.addEventListener("click", () => { burst(); setTimeout(() => go(2), 450); });
+yesBtn.addEventListener("click", () => { burst(); setTimeout(() => goTo("reasons"), 450); });
 
 /* ---------- step 2: reasons ---------- */
 function syncReasons() {
@@ -433,16 +608,16 @@ function syncLoc() {
 $("#address").addEventListener("input", syncLoc);
 $("#locBtn").addEventListener("click", () => {
   const st = $("#locStatus");
-  if (!navigator.geolocation) { st.textContent = "Your browser can't share location — type the address below instead."; return; }
-  st.textContent = "Finding you… 🛰️";
+  if (!navigator.geolocation) { st.textContent = t("loc.unsupported"); return; }
+  st.textContent = t("loc.finding");
   navigator.geolocation.getCurrentPosition(
     pos => {
       state.coords = { lat: pos.coords.latitude.toFixed(6), lng: pos.coords.longitude.toFixed(6) };
-      st.innerHTML = `Got it! ✅ <a href="${mapsLink()}" target="_blank" rel="noopener">Check on map</a>`;
-      $("#locBtn").textContent = "Update location";
+      st.innerHTML = `${t("loc.got")} <a href="${mapsLink()}" target="_blank" rel="noopener">${t("loc.map")}</a>`;
+      $("#locBtn").textContent = t("loc.update");
       syncLoc();
     },
-    () => { st.textContent = "Couldn't get your location — no worries, type the address below."; },
+    () => { st.textContent = t("loc.fail"); },
     { enableHighAccuracy: true, timeout: 12000 }
   );
 });
@@ -455,11 +630,11 @@ const maxView = new Date(today.getFullYear(), today.getMonth() + 3, 1);
 const TIMES = ["12:00", "14:00", "16:00", "18:00", "19:00", "20:00"];
 
 function renderCal() {
-  $("#calTitle").textContent = view.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+  $("#calTitle").textContent = view.toLocaleDateString(t("locale"), { month: "long", year: "numeric" });
   $("#calPrev").disabled = view <= new Date(today.getFullYear(), today.getMonth(), 1);
   $("#calNext").disabled = view >= maxView;
   const g = $("#calGrid"); g.innerHTML = "";
-  ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].forEach(d => g.insertAdjacentHTML("beforeend", `<div class="dow">${d}</div>`));
+  t("dow").forEach(d => g.insertAdjacentHTML("beforeend", `<div class="dow">${d}</div>`));
   const offset = (view.getDay() + 6) % 7;
   for (let i = 0; i < offset; i++) g.appendChild(document.createElement("div"));
   const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
@@ -493,7 +668,7 @@ order.forEach((key, i) => {
   const c = CITIES[key];
   const card = document.createElement("div");
   card.className = `scard city-${key}`;
-  card.innerHTML = `<div class="prize"><span class="e">${c.emoji}</span><b>${c.name}</b></div><canvas></canvas>`;
+  card.innerHTML = `<div class="prize"><span class="e">${c.emoji}</span><b data-city="${key}">${c.name}</b></div><canvas></canvas>`;
   $("#cards").appendChild(card);
   setupScratch(card, key, i);
 });
@@ -515,7 +690,7 @@ function setupScratch(card, key, i) {
     for (let y = 0; y < r.height; y += 14) for (let x = (y / 14) % 2 ? 7 : 0; x < r.width; x += 14) ctx.fillText("♥", x, y);
     ctx.fillStyle = "#6b4510"; ctx.textAlign = "center";
     ctx.font = "600 30px Fraunces, serif"; ctx.fillText(["I", "II", "III"][i], r.width / 2, r.height / 2 - 4);
-    ctx.font = "600 18px Caveat, cursive"; ctx.fillText("scratch me", r.width / 2, r.height / 2 + 22);
+    ctx.font = "600 18px Caveat, cursive"; ctx.fillText(t("cards.scratch"), r.width / 2, r.height / 2 + 22);
     ctx.globalCompositeOperation = "destination-out";
   }
   // cards live in a hidden step, so paint once they're actually on screen
@@ -540,8 +715,8 @@ function setupScratch(card, key, i) {
     reveal(key, card);
   }
   function start(e) {
-    if (chosen && chosen !== card) { toast("No take-backs 😜 you already picked!"); return; }
-    if (!chosen) { chosen = card; $("#scratchHint").textContent = "Keep scratching… 👀"; }
+    if (chosen && chosen !== card) { toast(t("cards.taken")); return; }
+    if (!chosen) { chosen = card; $("#scratchHint").textContent = t("cards.keep"); }
     drawing = true; scratch(e);
   }
   cv.addEventListener("mousedown", start);
@@ -556,12 +731,12 @@ function setupScratch(card, key, i) {
 function reveal(key, card) {
   if (state.city) return;
   state.city = key;
-  const c = CITIES[key];
+  const name = t("cityNames")[key];
   card.classList.add("win");
   burst();
-  $("#scratchHint").textContent = `It's ${c.name}! 🎉`;
-  $("#revealTitle").textContent = `${c.emoji} ${c.name} it is!`;
-  $("#revealText").textContent = c.blurb;
+  $("#scratchHint").textContent = t("cards.its")(name);
+  $("#revealTitle").textContent = `${CITIES[key].emoji} ${t("cards.itIs")(name)}`;
+  $("#revealText").textContent = t("blurbs")[key];
   $("#revealBox").classList.add("show");
   $("#cardsNext").disabled = false;
   // show what she didn't pick
@@ -569,6 +744,7 @@ function reveal(key, card) {
 }
 
 /* ---------- step 6: ticket + send ---------- */
+// The email to me is always in English; the ticket she sees is in her language.
 function summary() {
   const c = CITIES[state.city];
   const date = state.date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
@@ -577,14 +753,14 @@ function summary() {
   return { city: `${c.emoji} ${c.name}`, date, time: state.time, pickup, reasons };
 }
 function fillTicket() {
-  const s = summary();
-  $("#tCity").textContent = s.city;
-  $("#tDate").textContent = s.date;
-  $("#tTime").textContent = s.time;
-  $("#tPickup").textContent = state.address || "📍 Shared via map";
-  $("#tReasons").textContent = s.reasons;
+  const shownReasons = $$("#reasons .opt").filter(o => $("input", o).checked).map(o => $("span", o).textContent);
+  $("#tCity").textContent = cityName(state.city);
+  $("#tDate").textContent = state.date.toLocaleDateString(t("locale"), { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  $("#tTime").textContent = state.time;
+  $("#tPickup").textContent = state.address || t("tk.mapShared");
+  $("#tReasons").textContent = [...shownReasons, state.other].filter(Boolean).join(" · ");
   burst();
-  emailAnswers(s);
+  emailAnswers(summary());
 }
 
 // Emails her answers automatically when she reaches the ticket. Re-sends only if she went back and changed something.
@@ -601,6 +777,7 @@ function emailAnswers(s) {
     "Date": s.date,
     "Time": s.time,
     "City (scratch card)": s.city,
+    "Language she picked": lang === "nl" ? "Dutch 🇳🇱" : "English 🇬🇧",
   };
   const key = JSON.stringify(payload);
   if (!NOTIFY_EMAIL || key === lastEmailed) return;
@@ -608,10 +785,10 @@ function emailAnswers(s) {
   const status = $("#sendStatus"), retry = $("#retryBtn");
   const failed = () => {
     lastEmailed = "";
-    status.textContent = "Hmm, that didn't go through 😕";
+    status.textContent = t("send.fail");
     retry.hidden = false;
   };
-  status.textContent = "Sending your answers to me… 💌";
+  status.textContent = t("send.sending");
   retry.hidden = true;
   fetch(`https://formsubmit.co/ajax/${NOTIFY_EMAIL}`, {
     method: "POST",
@@ -619,7 +796,7 @@ function emailAnswers(s) {
     body: key,
     keepalive: true, // finishes sending even if she closes the tab right away
   }).then(r => r.json().catch(() => ({})).then(d => {
-    if (r.ok && String(d.success) !== "false") status.textContent = "Got it! See you soon 😘";
+    if (r.ok && String(d.success) !== "false") status.textContent = t("send.ok");
     else failed();
   })).catch(failed);
 }
