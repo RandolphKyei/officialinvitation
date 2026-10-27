@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Alicia 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fff5f3;
+    --bg-2: #ffe4e1;
+    --card: #ffffff;
+    --ink: #3a1f2b;
+    --ink-soft: #7a5866;
+    --rose: #e0455f;
+    --rose-dark: #b8304a;
+    --gold: #d9a441;
+    --line: #f2cfd3;
+    --shadow: 0 20px 50px -20px rgba(184, 48, 74, .35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh;
+    font-family: "DM Sans", system-ui, sans-serif;
+    color: var(--ink);
+    background: radial-gradient(1200px 600px at 10% -10%, var(--bg-2), transparent 60%),
+                radial-gradient(900px 500px at 110% 110%, #ffe9d6, transparent 60%),
+                var(--bg);
+    overflow-x: hidden;
+  }
+
+  /* floating hearts background */
+  .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .hearts span {
+    position: absolute; bottom: -40px; font-size: 18px; opacity: .35;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+  }
+
+  main {
+    position: relative; z-index: 1;
+    max-width: 560px; margin: 0 auto; padding: 40px 16px 60px;
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .progress { display: flex; gap: 6px; margin-bottom: 18px; }
+  .progress i { flex: 1; height: 5px; border-radius: 99px; background: var(--line); transition: background .4s; }
+  .progress i.on { background: var(--rose); }
+
+  .step {
+    display: none;
+    background: var(--card);
+    border-radius: 24px;
+    padding: 32px 26px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    animation: pop .5s cubic-bezier(.2,.9,.3,1.3);
+  }
+  .step.active { display: block; }
+  @keyframes pop { from { opacity: 0; transform: translateY(16px) scale(.97); } }
+
+  .eyebrow { font-family: "Caveat", cursive; font-size: 26px; color: var(--rose); margin: 0 0 4px; }
+  h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.15; margin: 0 0 12px; }
+  h1 { font-size: clamp(32px, 7vw, 44px); }
+  h2 { font-size: clamp(24px, 5.5vw, 32px); }
+  p { line-height: 1.6; color: var(--ink-soft); margin: 0 0 18px; }
+  .big-emoji { font-size: 64px; display: block; text-align: center; margin-bottom: 8px; animation: wiggle 2.4s ease-in-out infinite; }
+  @keyframes wiggle { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+
+  .btn {
+    appearance: none; border: 0; cursor: pointer;
+    font: 600 16px "DM Sans", sans-serif;
+    padding: 14px 26px; border-radius: 99px;
+    background: var(--rose); color: #fff;
+    box-shadow: 0 8px 20px -8px var(--rose);
+    transition: transform .15s, background .2s, opacity .2s;
+  }
+  .btn:hover { background: var(--rose-dark); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.97); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+  .btn.ghost { background: transparent; color: var(--ink-soft); box-shadow: none; border: 1.5px solid var(--line); }
+  .btn.ghost:hover { background: var(--bg); }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .row.center { justify-content: center; }
+  .row.end { justify-content: space-between; margin-top: 24px; }
+
+  /* Yes/No arena */
+  .arena { position: relative; height: 150px; margin-top: 10px; }
+  .arena .btn { position: absolute; top: 50%; transform: translateY(-50%); }
+  .arena .btn:hover { transform: translateY(-50%); }
+  #yesBtn { left: 18%; transition: font-size .2s, padding .2s, transform .15s; }
+  #noBtn { left: 58%; transition: left .25s, top .25s; }
+  .no-msg { text-align: center; min-height: 24px; font-family: "Caveat", cursive; font-size: 22px; color: var(--rose); }
+
+  /* reasons */
+  .options { display: grid; gap: 10px; margin-bottom: 16px; }
+  .opt {
+    display: flex; gap: 12px; align-items: center;
+    padding: 13px 16px; border-radius: 14px; border: 1.5px solid var(--line);
+    cursor: pointer; transition: border-color .2s, background .2s, transform .1s;
+    user-select: none;
+  }
+  .opt:hover { border-color: var(--rose); }
+  .opt input { accent-color: var(--rose); width: 18px; height: 18px; flex: none; }
+  .opt.checked { background: #fff0f2; border-color: var(--rose); }
+  textarea, input[type=text] {
+    width: 100%; font: 15px "DM Sans", sans-serif; color: var(--ink);
+    padding: 13px 15px; border-radius: 14px; border: 1.5px solid var(--line);
+    background: #fffafa; outline: none; resize: vertical;
+  }
+  textarea:focus, input[type=text]:focus { border-color: var(--rose); }
+  label.small { display: block; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); margin: 14px 0 6px; }
+
+  /* location */
+  .loc-card {
+    border: 1.5px dashed var(--rose); border-radius: 18px; padding: 20px; text-align: center;
+    background: #fff8f9; margin-bottom: 8px;
+  }
+  .loc-status { font-size: 14px; margin-top: 12px; min-height: 20px; }
+  .loc-status a { color: var(--rose); font-weight: 600; }
+  .divider { text-align: center; color: var(--ink-soft); font-size: 13px; margin: 14px 0 0; }
+
+  /* calendar */
+  .cal { border: 1.5px solid var(--line); border-radius: 18px; padding: 14px; }
+  .cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .cal-head strong { font-family: "Fraunces", serif; font-size: 19px; }
+  .cal-nav { background: none; border: 1.5px solid var(--line); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px; color: var(--ink); }
+  .cal-nav:disabled { opacity: .3; cursor: not-allowed; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+  .cal-grid .dow { font-size: 12px; font-weight: 700; color: var(--ink-soft); padding: 4px 0; }
+  .day {
+    aspect-ratio: 1; border-radius: 12px; border: 0; background: none; cursor: pointer;
+    font: 500 15px "DM Sans", sans-serif; color: var(--ink); transition: background .15s;
+  }
+  .day:hover:not(:disabled) { background: #ffe8ec; }
+  .day:disabled { color: #d5c2c7; cursor: not-allowed; }
+  .day.today { box-shadow: inset 0 0 0 1.5px var(--rose); }
+  .day.sel { background: var(--rose); color: #fff; }
+  .day.weekend:not(:disabled):not(.sel)::after { content: "♥"; display: block; font-size: 8px; color: var(--rose); line-height: 0; margin-top: 2px; }
+  .times { display: flex; flex-wrap: wrap; gap: 8px; }
+  .time {
+    padding: 9px 14px; border-radius: 99px; border: 1.5px solid var(--line);
+    background: #fff; cursor: pointer; font: 500 14px "DM Sans", sans-serif; color: var(--ink);
+  }
+  .time.sel { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  /* scratch cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 8px 0 6px; }
+  .scard {
+    position: relative; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 10px 24px -12px rgba(0,0,0,.35); transition: transform .3s, opacity .4s, filter .4s;
+  }
+  .scard .prize {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 8px; color: #fff;
+  }
+  .scard .prize b { font-family: "Fraunces", serif; font-size: clamp(15px, 4vw, 20px); margin-top: 4px; }
+  .scard .prize span.e { font-size: clamp(30px, 8vw, 42px); }
+  .scard canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; transition: opacity .6s; }
+  .scard.dim { opacity: .45; filter: grayscale(.6); transform: scale(.94); }
+  .scard.win { transform: scale(1.05); box-shadow: 0 0 0 3px var(--gold), 0 18px 40px -12px rgba(217,164,65,.7); }
+  .city-ROT { background: linear-gradient(160deg, #2b6fd6, #11316b); }
+  .city-AMS { background: linear-gradient(160deg, #e0455f, #7a1530); }
+  .city-BRU { background: linear-gradient(160deg, #e2a53a, #8a4d0c); }
+  .hint { text-align: center; font-family: "Caveat", cursive; font-size: 22px; color: var(--rose); min-height: 30px; }
+  .reveal-box {
+    display: none; margin-top: 14px; padding: 18px; border-radius: 18px; background: #fff8ec; border: 1.5px solid #f3dcae;
+  }
+  .reveal-box.show { display: block; animation: pop .5s; }
+  .reveal-box h3 { font-family: "Fraunces", serif; margin: 0 0 6px; font-size: 22px; }
+  .reveal-box p { margin: 0; }
+
+  /* ticket */
+  .ticket {
+    position: relative; border-radius: 20px; overflow: hidden; border: 1.5px solid var(--line);
+    background: linear-gradient(135deg, #fff, #fff4f6);
+  }
+  .ticket-top { padding: 20px 22px; background: var(--rose); color: #fff; }
+  .ticket-top small { letter-spacing: .2em; text-transform: uppercase; font-size: 11px; opacity: .85; }
+  .ticket-top h3 { font-family: "Fraunces", serif; margin: 4px 0 0; font-size: 26px; }
+  .ticket-body { padding: 18px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; }
+  .ticket-body div small { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+  .ticket-body div span { font-weight: 600; word-break: break-word; }
+  .ticket-body .full { grid-column: 1 / -1; }
+  .perf { border-top: 2px dashed var(--line); margin: 0 14px; }
+  .ticket-foot { padding: 14px 22px 18px; font-family: "Caveat", cursive; font-size: 22px; color: var(--rose); text-align: center; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(100px);
+    background: var(--ink); color: #fff; padding: 12px 20px; border-radius: 99px; font-size: 14px;
+    transition: transform .35s; z-index: 50;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 40; }
+
+  @media (max-width: 420px) {
+    .step { padding: 26px 18px; }
+    #yesBtn { left: 6%; }
+    #noBtn { left: 56%; }
+  }
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+<canvas id="confetti"></canvas>
+
+<main>
+  <div class="progress" id="progress"></div>
+
+  <!-- 0. Intro -->
+  <section class="step active" data-step="0">
+    <span class="big-emoji">💌</span>
+    <p class="eyebrow">Hey Alicia,</p>
+    <h1>I made you something.</h1>
+    <p>Someone (me 👀) has been trying to lock in a date with you for a while now. Instead of another text, I figured I'd build you a whole website. Answer honestly… mostly.</p>
+    <div class="row center"><button class="btn" data-next>Open it ✨</button></div>
+  </section>
+
+  <!-- 1. Yes / No -->
+  <section class="step" data-step="1">
+    <p class="eyebrow">Question one</p>
+    <h2>Would you like to see me?</h2>
+    <p>Take your time. (There's only one right answer.)</p>
+    <div class="arena" id="arena">
+      <button class="btn" id="yesBtn">Yes 💖</button>
+      <button class="btn ghost" id="noBtn">No</button>
+    </div>
+    <div class="no-msg" id="noMsg"></div>
+  </section>
+
+  <!-- 2. Reasons -->
+  <section class="step" data-step="2">
+    <p class="eyebrow">I knew it 😌</p>
+    <h2>So… why did it take us so long to agree on a date?</h2>
+    <p>Tick everything that applies. This is a safe space.</p>
+    <div class="options" id="reasons">
+      <label class="opt"><input type="checkbox" value="I was busy (being amazing)"> I was busy (being amazing) 💅</label>
+      <label class="opt"><input type="checkbox" value="I wanted to see how hard you'd try"> I wanted to see how hard you'd try 😏</label>
+      <label class="opt"><input type="checkbox" value="Our calendars were enemies"> Our calendars were enemies 📅⚔️</label>
+      <label class="opt"><input type="checkbox" value="I was nervous, honestly"> I was nervous, honestly 🙈</label>
+      <label class="opt"><input type="checkbox" value="Waiting for a website like this"> I was waiting for a website like this 💻</label>
+      <label class="opt"><input type="checkbox" value="It's 100% your fault"> It's 100% your fault 🫵</label>
+    </div>
+    <label class="small" for="reasonOther">Anything else you want to confess?</label>
+    <textarea id="reasonOther" rows="2" placeholder="The real reason is…"></textarea>
+    <div class="row end">
+      <button class="btn ghost" data-prev>Back</button>
+      <button class="btn" data-next id="reasonsNext" disabled>Next →</button>
+    </div>
+  </section>
+
+  <!-- 3. Location -->
+  <section class="step" data-step="3">
+    <p class="eyebrow">Door-to-door service 🚗</p>
+    <h2>Where should I pick you up?</h2>
+    <p>No meeting halfway — I'm coming to get you. Drop your location so I know where to show up.</p>
+    <div class="loc-card">
+      <div style="font-size:40px">📍</div>
+      <button class="btn" id="locBtn">Share my location</button>
+      <div class="loc-status" id="locStatus"></div>
+    </div>
+    <p class="divider">— or type it in —</p>
+    <label class="small" for="address">Pickup address</label>
+    <input type="text" id="address" placeholder="Street, number, city">
+    <div class="row end">
+      <button class="btn ghost" data-prev>Back</button>
+      <button class="btn" data-next id="locNext" disabled>Next →</button>
+    </div>
+  </section>
+
+  <!-- 4. Calendar -->
+  <section class="step" data-step="4">
+    <p class="eyebrow">Clear your schedule 🗓️</p>
+    <h2>Pick the day & time</h2>
+    <p>Hearts mark the weekends, just saying.</p>
+    <div class="cal">
+      <div class="cal-head">
+        <button class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
+        <strong id="calTitle"></strong>
+        <button class="cal-nav" id="calNext" aria-label="Next month">›</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <label class="small">What time?</label>
+    <div class="times" id="times"></div>
+    <div class="row end">
+      <button class="btn ghost" data-prev>Back</button>
+      <button class="btn" data-next id="calNextStep" disabled>Next →</button>
+    </div>
+  </section>
+
+  <!-- 5. Scratch cards -->
+  <section class="step" data-step="5">
+    <p class="eyebrow">Let fate decide 🎰</p>
+    <h2>Where are we going?</h2>
+    <p>Three cities are hiding under these cards: <b>Rotterdam</b>, <b>Amsterdam</b> and <b>Brussels</b>. Pick <b>one</b> card and scratch it. No take-backs.</p>
+    <div class="cards" id="cards"></div>
+    <div class="hint" id="scratchHint">Choose wisely… ✨</div>
+    <div class="reveal-box" id="revealBox">
+      <h3 id="revealTitle"></h3>
+      <p id="revealText"></p>
+    </div>
+    <div class="row end">
+      <button class="btn ghost" data-prev>Back</button>
+      <button class="btn" data-next id="cardsNext" disabled>See our date →</button>
+    </div>
+  </section>
+
+  <!-- 6. Ticket -->
+  <section class="step" data-step="6">
+    <p class="eyebrow">It's official 🥂</p>
+    <h2>Your ticket</h2>
+    <p>That's everything. Leave the rest to me.</p>
+    <div class="ticket">
+      <div class="ticket-top">
+        <small>Admit two · First date</small>
+        <h3 id="tCity">—</h3>
+      </div>
+      <div class="ticket-body">
+        <div><small>Date</small><span id="tDate">—</span></div>
+        <div><small>Time</small><span id="tTime">—</span></div>
+        <div class="full"><small>Pickup</small><span id="tPickup">—</span></div>
+        <div class="full"><small>Why it took so long</small><span id="tReasons">—</span></div>
+      </div>
+      <div class="perf"></div>
+      <div class="ticket-foot">Alicia × You-know-who 😉</div>
+    </div>
+    <div class="row center" style="margin-top:22px; flex-direction:column; gap:10px">
+      <div class="hint" id="sendStatus"></div>
+      <button class="btn" id="retryBtn" hidden>Try sending again</button>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== Settings — fill these in before sending the link ===== */
+const NOTIFY_EMAIL = "randykyei1997@gmail.com"; // her answers get emailed here (via formsubmit.co)
+/* ============================================================ */
+
+const CITIES = {
+  ROT: { name: "Rotterdam", emoji: "🌉", blurb: "Skyline views from the Erasmus Bridge, food at the Markthal and a walk along the Maas. Modern, bold — like us." },
+  AMS: { name: "Amsterdam", emoji: "🚲", blurb: "Canal-side drinks, golden-hour walks through the Jordaan and getting a little lost on purpose. Classic romance." },
+  BRU: { name: "Brussels",  emoji: "🧇", blurb: "Grand-Place lit up at night, waffles, chocolate and Belgian fries. A little road trip for a first date — very cinematic." },
+};
+
+const state = { step: 0, reasons: [], other: "", coords: null, address: "", date: null, time: null, city: null };
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const steps = $$(".step");
+
+/* ---------- background hearts ---------- */
+(() => {
+  const box = $("#hearts"), glyphs = ["💗", "💕", "❤️", "💖", "🌹"];
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement("span");
+    s.textContent = glyphs[i % glyphs.length];
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.fontSize = 12 + Math.random() * 18 + "px";
+    s.style.animationDuration = 10 + Math.random() * 14 + "s";
+    s.style.animationDelay = -Math.random() * 20 + "s";
+    box.appendChild(s);
+  }
+})();
+
+/* ---------- navigation ---------- */
+const progress = $("#progress");
+steps.forEach(() => progress.appendChild(document.createElement("i")));
+function go(n) {
+  state.step = n;
+  steps.forEach((s, i) => s.classList.toggle("active", i === n));
+  $$("i", progress).forEach((b, i) => b.classList.toggle("on", i <= n));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (n === 5) $$(".scard").forEach(c => c._paint());
+  if (n === 6) fillTicket();
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-next]") && !e.target.disabled) go(state.step + 1);
+  if (e.target.closest("[data-prev]")) go(state.step - 1);
+});
+go(0);
+
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+/* ---------- step 1: the runaway No ---------- */
+const noLines = [
+  "Hmm, that button seems broken 🤔", "Are you sure? Think again.", "Wrong answer, try the other one 😇",
+  "The No button has left the chat.", "Nice try 😂", "I'll keep moving it forever.", "Just press Yes 🥺",
+];
+let noCount = 0;
+const noBtn = $("#noBtn"), yesBtn = $("#yesBtn"), arena = $("#arena");
+function dodge(e) {
+  e.preventDefault();
+  const a = arena.getBoundingClientRect(), b = noBtn.getBoundingClientRect();
+  const maxX = a.width - b.width, maxY = a.height - b.height;
+  noBtn.style.left = Math.random() * maxX + "px";
+  noBtn.style.top = Math.random() * maxY + b.height / 2 + "px";
+  $("#noMsg").textContent = noLines[noCount % noLines.length];
+  noCount++;
+  const grow = Math.min(1 + noCount * 0.12, 1.9);
+  yesBtn.style.transform = `translateY(-50%) scale(${grow})`;
+}
+noBtn.addEventListener("mouseenter", dodge);
+noBtn.addEventListener("click", dodge);
+noBtn.addEventListener("touchstart", dodge, { passive: false });
+yesBtn.addEventListener("click", () => { burst(); setTimeout(() => go(2), 450); });
+
+/* ---------- step 2: reasons ---------- */
+function syncReasons() {
+  $$(".opt").forEach(o => o.classList.toggle("checked", $("input", o).checked));
+  state.reasons = $$("#reasons input:checked").map(i => i.value);
+  state.other = $("#reasonOther").value.trim();
+  $("#reasonsNext").disabled = !state.reasons.length && !state.other;
+}
+$("#reasons").addEventListener("change", syncReasons);
+$("#reasonOther").addEventListener("input", syncReasons);
+
+/* ---------- step 3: location ---------- */
+function syncLoc() {
+  state.address = $("#address").value.trim();
+  $("#locNext").disabled = !state.coords && !state.address;
+}
+$("#address").addEventListener("input", syncLoc);
+$("#locBtn").addEventListener("click", () => {
+  const st = $("#locStatus");
+  if (!navigator.geolocation) { st.textContent = "Your browser can't share location — type the address below instead."; return; }
+  st.textContent = "Finding you… 🛰️";
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      state.coords = { lat: pos.coords.latitude.toFixed(6), lng: pos.coords.longitude.toFixed(6) };
+      st.innerHTML = `Got it! ✅ <a href="${mapsLink()}" target="_blank" rel="noopener">Check on map</a>`;
+      $("#locBtn").textContent = "Update location";
+      syncLoc();
+    },
+    () => { st.textContent = "Couldn't get your location — no worries, type the address below."; },
+    { enableHighAccuracy: true, timeout: 12000 }
+  );
+});
+const mapsLink = () => state.coords ? `https://maps.google.com/?q=${state.coords.lat},${state.coords.lng}` : "";
+
+/* ---------- step 4: calendar ---------- */
+const today = new Date(); today.setHours(0, 0, 0, 0);
+let view = new Date(today.getFullYear(), today.getMonth(), 1);
+const maxView = new Date(today.getFullYear(), today.getMonth() + 3, 1);
+const TIMES = ["12:00", "14:00", "16:00", "18:00", "19:00", "20:00"];
+
+function renderCal() {
+  $("#calTitle").textContent = view.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+  $("#calPrev").disabled = view <= new Date(today.getFullYear(), today.getMonth(), 1);
+  $("#calNext").disabled = view >= maxView;
+  const g = $("#calGrid"); g.innerHTML = "";
+  ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].forEach(d => g.insertAdjacentHTML("beforeend", `<div class="dow">${d}</div>`));
+  const offset = (view.getDay() + 6) % 7;
+  for (let i = 0; i < offset; i++) g.appendChild(document.createElement("div"));
+  const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+  for (let d = 1; d <= days; d++) {
+    const date = new Date(view.getFullYear(), view.getMonth(), d);
+    const b = document.createElement("button");
+    b.className = "day"; b.textContent = d;
+    if (date < today) b.disabled = true;
+    if (+date === +today) b.classList.add("today");
+    if ([0, 6].includes(date.getDay())) b.classList.add("weekend");
+    if (state.date && +date === +state.date) b.classList.add("sel");
+    b.onclick = () => { state.date = date; renderCal(); syncCal(); };
+    g.appendChild(b);
+  }
+}
+$("#calPrev").onclick = () => { view.setMonth(view.getMonth() - 1); renderCal(); };
+$("#calNext").onclick = () => { view.setMonth(view.getMonth() + 1); renderCal(); };
+TIMES.forEach(t => {
+  const b = document.createElement("button");
+  b.className = "time"; b.textContent = t;
+  b.onclick = () => { state.time = t; $$(".time").forEach(x => x.classList.toggle("sel", x === b)); syncCal(); };
+  $("#times").appendChild(b);
+});
+function syncCal() { $("#calNextStep").disabled = !(state.date && state.time); }
+renderCal();
+
+/* ---------- step 5: scratch cards ---------- */
+const order = Object.keys(CITIES).sort(() => Math.random() - 0.5);
+let chosen = null;
+order.forEach((key, i) => {
+  const c = CITIES[key];
+  const card = document.createElement("div");
+  card.className = `scard city-${key}`;
+  card.innerHTML = `<div class="prize"><span class="e">${c.emoji}</span><b>${c.name}</b></div><canvas></canvas>`;
+  $("#cards").appendChild(card);
+  setupScratch(card, key, i);
+});
+
+function setupScratch(card, key, i) {
+  const cv = $("canvas", card), ctx = cv.getContext("2d");
+  let drawing = false, done = false;
+  let painted = false;
+  function paint() {
+    const r = card.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    if (painted || done || !r.width) return;
+    painted = true;
+    cv.width = r.width * dpr; cv.height = r.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const g = ctx.createLinearGradient(0, 0, r.width, r.height);
+    g.addColorStop(0, "#f6d77a"); g.addColorStop(.5, "#d9a441"); g.addColorStop(1, "#f3cf6b");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, r.width, r.height);
+    ctx.fillStyle = "rgba(255,255,255,.18)";
+    for (let y = 0; y < r.height; y += 14) for (let x = (y / 14) % 2 ? 7 : 0; x < r.width; x += 14) ctx.fillText("♥", x, y);
+    ctx.fillStyle = "#6b4510"; ctx.textAlign = "center";
+    ctx.font = "600 30px Fraunces, serif"; ctx.fillText(["I", "II", "III"][i], r.width / 2, r.height / 2 - 4);
+    ctx.font = "600 18px Caveat, cursive"; ctx.fillText("scratch me", r.width / 2, r.height / 2 + 22);
+    ctx.globalCompositeOperation = "destination-out";
+  }
+  // cards live in a hidden step, so paint once they're actually on screen
+  card._paint = () => document.fonts.ready.then(paint);
+  const pt = e => { const r = cv.getBoundingClientRect(), p = e.touches ? e.touches[0] : e; return [p.clientX - r.left, p.clientY - r.top]; };
+  function scratch(e) {
+    if (!drawing || done) return;
+    e.preventDefault();
+    const [x, y] = pt(e);
+    ctx.beginPath(); ctx.arc(x, y, 18, 0, Math.PI * 2); ctx.fill();
+    if (Math.random() < .2) check();
+  }
+  function check() {
+    const data = ctx.getImageData(0, 0, cv.width, cv.height).data;
+    let clear = 0;
+    for (let p = 3; p < data.length; p += 64) if (data[p] === 0) clear++;
+    if (clear / (data.length / 64) > .45) finish();
+  }
+  function finish() {
+    done = true; cv.style.opacity = 0;
+    setTimeout(() => cv.remove(), 600);
+    reveal(key, card);
+  }
+  function start(e) {
+    if (chosen && chosen !== card) { toast("No take-backs 😜 you already picked!"); return; }
+    if (!chosen) { chosen = card; $("#scratchHint").textContent = "Keep scratching… 👀"; }
+    drawing = true; scratch(e);
+  }
+  cv.addEventListener("mousedown", start);
+  cv.addEventListener("touchstart", start, { passive: false });
+  window.addEventListener("mousemove", scratch);
+  cv.addEventListener("touchmove", scratch, { passive: false });
+  window.addEventListener("mouseup", () => { if (drawing) { drawing = false; if (!done) check(); } });
+  cv.addEventListener("touchend", () => { drawing = false; if (!done) check(); });
+  card._finish = () => { if (!done) finish(); };
+}
+
+function reveal(key, card) {
+  if (state.city) return;
+  state.city = key;
+  const c = CITIES[key];
+  card.classList.add("win");
+  burst();
+  $("#scratchHint").textContent = `It's ${c.name}! 🎉`;
+  $("#revealTitle").textContent = `${c.emoji} ${c.name} it is!`;
+  $("#revealText").textContent = c.blurb;
+  $("#revealBox").classList.add("show");
+  $("#cardsNext").disabled = false;
+  // show what she didn't pick
+  setTimeout(() => $$(".scard").forEach(o => { if (o !== card) { o._finish(); o.classList.add("dim"); } }), 1400);
+}
+
+/* ---------- step 6: ticket + send ---------- */
+function summary() {
+  const c = CITIES[state.city];
+  const date = state.date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const pickup = [state.address, state.coords && mapsLink()].filter(Boolean).join(" — ");
+  const reasons = [...state.reasons, state.other].filter(Boolean).join("; ");
+  return { city: `${c.emoji} ${c.name}`, date, time: state.time, pickup, reasons };
+}
+function fillTicket() {
+  const s = summary();
+  $("#tCity").textContent = s.city;
+  $("#tDate").textContent = s.date;
+  $("#tTime").textContent = s.time;
+  $("#tPickup").textContent = state.address || "📍 Shared via map";
+  $("#tReasons").textContent = s.reasons;
+  burst();
+  emailAnswers(s);
+}
+
+// Emails her answers automatically when she reaches the ticket. Re-sends only if she went back and changed something.
+let lastEmailed = "";
+function emailAnswers(s) {
+  const payload = {
+    _subject: `💌 Alicia said YES — ${CITIES[state.city].name}, ${s.date}`,
+    _template: "table",
+    _captcha: "false",
+    "Would she like to see you?": `Yes 💖 (tried to press No ${noCount} time${noCount === 1 ? "" : "s"})`,
+    "Why it took so long": s.reasons,
+    "Pickup address": state.address || "(not typed)",
+    "Pickup map link": mapsLink() || "(location not shared)",
+    "Date": s.date,
+    "Time": s.time,
+    "City (scratch card)": s.city,
+  };
+  const key = JSON.stringify(payload);
+  if (!NOTIFY_EMAIL || key === lastEmailed) return;
+  lastEmailed = key;
+  const status = $("#sendStatus"), retry = $("#retryBtn");
+  const failed = () => {
+    lastEmailed = "";
+    status.textContent = "Hmm, that didn't go through 😕";
+    retry.hidden = false;
+  };
+  status.textContent = "Sending your answers to me… 💌";
+  retry.hidden = true;
+  fetch(`https://formsubmit.co/ajax/${NOTIFY_EMAIL}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: key,
+    keepalive: true, // finishes sending even if she closes the tab right away
+  }).then(r => r.json().catch(() => ({})).then(d => {
+    if (r.ok && String(d.success) !== "false") status.textContent = "Got it! See you soon 😘";
+    else failed();
+  })).catch(failed);
+}
+$("#retryBtn").onclick = () => emailAnswers(summary());
+
+/* ---------- confetti ---------- */
+const cc = $("#confetti"), cx = cc.getContext("2d");
+let parts = [];
+function sizeCC() { cc.width = innerWidth; cc.height = innerHeight; }
+addEventListener("resize", sizeCC); sizeCC();
+function burst() {
+  const colors = ["#e0455f", "#d9a441", "#ff9fb2", "#2b6fd6", "#ffffff"];
+  for (let i = 0; i < 140; i++) parts.push({
+    x: innerWidth / 2, y: innerHeight / 2.5,
+    vx: (Math.random() - .5) * 14, vy: Math.random() * -14 - 2,
+    s: 4 + Math.random() * 6, r: Math.random() * 6, vr: (Math.random() - .5) * .3,
+    c: colors[i % colors.length], heart: Math.random() < .25, life: 0,
+  });
+  if (parts.length === 140) requestAnimationFrame(tick);
+}
+function tick() {
+  cx.clearRect(0, 0, cc.width, cc.height);
+  parts.forEach(p => {
+    p.vy += .32; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life++;
+    cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.fillStyle = p.c;
+    if (p.heart) { cx.font = `${p.s * 2.4}px serif`; cx.fillText("♥", 0, 0); }
+    else cx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2);
+    cx.restore();
+  });
+  parts = parts.filter(p => p.y < innerHeight + 40 && p.life < 240);
+  if (parts.length) requestAnimationFrame(tick); else cx.clearRect(0, 0, cc.width, cc.height);
+}
+</script>
+</body>
+</html>
